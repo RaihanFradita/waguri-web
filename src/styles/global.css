@@ -1,0 +1,297 @@
+@import "./variables.css";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 24px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary-pink);
+  outline-offset: 2px;
+}
+
+/* Code & Pre */
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--soft-pink);
+  color: var(--primary-pink);
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-wrapper {
+  position: relative;
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section-wrapper {
+    padding: 56px 0;
+  }
+}
+
+/* Common Section Headers */
+.section-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-pink);
+  margin-bottom: 12px;
+}
+
+.section-header-title {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.section-header-desc {
+  font-size: clamp(14px, 1.8vw, 16px);
+  color: var(--text-secondary);
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+/* Reusable Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--primary-pink);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-pink-glow);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-pink-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(244, 91, 147, 0.45);
+}
+
+.btn-secondary {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-pink);
+  background-color: var(--soft-pink);
+  color: var(--primary-pink);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-pink);
+  border: 1.5px solid var(--primary-pink);
+}
+
+.btn-outline:hover {
+  background-color: var(--soft-pink);
+  transform: translateY(-2px);
+}
+
+/* Badges */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-pink {
+  background-color: var(--soft-pink);
+  color: var(--primary-pink);
+  border: 1px solid var(--soft-pink-border);
+}
+
+.badge-lavender {
+  background-color: var(--lavender);
+  color: #6350B5;
+  border: 1px solid var(--lavender-border);
+}
+
+.badge-mint {
+  background-color: var(--mint);
+  color: #15803D;
+  border: 1px solid var(--mint-border);
+}
+
+.badge-sky {
+  background-color: var(--sky-blue);
+  color: #0284C7;
+  border: 1px solid var(--sky-blue-border);
+}
+
+.badge-cream {
+  background-color: var(--cream);
+  color: #B45309;
+  border: 1px solid var(--cream-border);
+}
+
+[data-theme="dark"] .badge-lavender {
+  color: #B8A8FC;
+}
+[data-theme="dark"] .badge-mint {
+  color: #6EE7B7;
+}
+[data-theme="dark"] .badge-sky {
+  color: #7DD3FC;
+}
+[data-theme="dark"] .badge-cream {
+  color: #FDE68A;
+}
+
+/* Decorative Petals */
+.floating-petal {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+  transition: transform 0.3s ease;
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(6deg);
+  }
+}
+
+.floating-anim-1 {
+  animation: floatSoft 6s ease-in-out infinite;
+}
+
+.floating-anim-2 {
+  animation: floatSoft 8s ease-in-out infinite 1.5s;
+}
+
+.floating-anim-3 {
+  animation: floatSoft 7s ease-in-out infinite 3s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-pink);
+}
+
+/* Subtle glow circles in background */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.glow-pink {
+  background: radial-gradient(circle, rgba(244, 91, 147, 0.25) 0%, transparent 70%);
+}
+
+.glow-lavender {
+  background: radial-gradient(circle, rgba(233, 228, 255, 0.5) 0%, transparent 70%);
+}
+
+.glow-blue {
+  background: radial-gradient(circle, rgba(221, 238, 255, 0.45) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .ambient-glow {
+  opacity: 0.35;
+}
+
